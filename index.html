@@ -445,7 +445,7 @@ async function fetchLiveData() {
     <div class="loading"><div class="spinner"></div>Τράβηγμα δεδομένων από football-data.co.uk...</div>`;
 
   try {
-    const url = `/.netlify/functions/getData?league=${encodeURIComponent(league)}&home=${encodeURIComponent(homeEn)}&away=${encodeURIComponent(awayEn)}`;
+    const url = `/api/getData?league=${encodeURIComponent(league)}&home=${encodeURIComponent(homeEn)}&away=${encodeURIComponent(awayEn)}`;
     const resp = await fetch(url);
     const data = await resp.json();
 
@@ -702,7 +702,7 @@ async function fetchStandings() {
   document.getElementById('standings-content').innerHTML = '<div class="loading"><div class="spinner"></div>Φόρτωση βαθμολογίας...</div>';
 
   try {
-    const resp = await fetch(`/.netlify/functions/getData?league=${encodeURIComponent(league)}`);
+    const resp = await fetch(`/api/getData?league=${encodeURIComponent(league)}`);
     const data = await resp.json();
     if(data.error) throw new Error(data.error);
     renderStandings(data.standings || []);
